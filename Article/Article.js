@@ -101,14 +101,66 @@ const data = [
 
   Hint: You will need to use createElement more than once here!
 
-  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above.
+  Your function should take either an object as it's one argument, or 5 separate arguments mapping to each piece of the data object above. x
 
-  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div.
+  Step 2: Add an event listener to the expandButton span. This event listener should toggle the class 'article-open' on the 'article' div. x
 
-  Step 3: return the entire component.
+  Step 3: return the entire component. x 
 
-  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div.
+  Step 4: Map over the data, creating a component for each oject and add each component to the DOM as children of the 'articles' div. x
 
   Step 5: Add a new article to the array. Make sure it is in the same format as the others. Refresh the page to see the new article.
 
 */
+
+
+const accordian = document.querySelector('.articles');
+
+function theComponent(title, date, firstParagraph, secondParagraph, thirdParagraph) {
+  //create
+  const contain = document.createElement('div');
+  const h2 = document.createElement('h2');
+  const p = document.createElement('p');
+  const p1 = document.createElement('p');
+  const p2 = document.createElement('p');
+  const p3 = document.createElement('p');
+  const buttonSpan = document.createElement('span')
+
+  //structure
+  contain.appendChild(h2);
+  contain.appendChild(p);
+  contain.appendChild(p1);
+  contain.appendChild(p2);
+  contain.appendChild(p3);
+  contain.appendChild(buttonSpan)
+
+  //classes
+  contain.classList.add('article');
+  p.classList.add('date');
+  buttonSpan.classList.add('expandButton');
+
+  //text content
+  h2.textContent = title;
+  p.textContent = date;
+  p1.textContent = firstParagraph;
+  p2.textContent = secondParagraph;
+  p3.textContent = thirdParagraph;
+  buttonSpan.textContent = "Read Moreee";
+
+  
+  //event listener
+  buttonSpan.addEventListener('click', e => {
+    console.log('button clicked', e.target);
+    contain.classList.toggle('article-open');
+
+  })
+
+  return contain
+}
+
+data.forEach(dataa => {
+  accordian.appendChild(theComponent(dataa.title, dataa.date, dataa.firstParafirstParagraph, dataa.secondParagraph, dataa.thirdParagraph))
+})
+
+
+
